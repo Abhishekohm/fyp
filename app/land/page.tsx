@@ -2,7 +2,8 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 
-export default function Land() {
+export default function Land() 
+{
     return (<>
         Landing page
         <Button>

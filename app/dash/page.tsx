@@ -1,6 +1,3 @@
-
-
-
 export default function dash() {
   return (
     <>
