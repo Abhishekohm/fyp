@@ -52,7 +52,7 @@ export default function Signup() {
     <div className="h-lvh">
       <header className="flex items-center justify-between h-auto px-4 bg-white shadow-md">
         <div className="text-lg font-bold">MitraBot</div>
-        <Button className="px-4 py-2 m-4 bg-blue-600 text-white rounded-md">Log In</Button>
+        <Button className="px-4 py-2 m-4 bg-blue-600 text-white rounded-md"><a href="/login">Log In</a></Button>
       </header>
       <div className="flex  h-svh items-center justify-center bg-gray-800">
         <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow-lg">

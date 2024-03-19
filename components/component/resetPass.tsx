@@ -8,11 +8,15 @@ import { DialogContent, Dialog } from "@/components/ui/dialog";
 export default function resetPass({onClose}) {
 
     const [userName, setUserName] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [alertShown, setAlertShown] = useState(false);
 
     const handleFormSubmit = async (e) => {
+
         e.preventDefault();
+        setLoading(true);
         // Logic to handle form submission (e.g., sending reset email)
-        console.log(userName);
+        console.log(userName);        
 
         try {
             const response = await fetch(`https://fypbackend-production-d00d.up.railway.app/api/auth/resetPassword/?username=${userName}`, {
@@ -22,6 +26,7 @@ export default function resetPass({onClose}) {
                 // },
             });
             if (response.ok) {
+                setAlertShown(true);
                 console.log('Email sent successfully!');
                 window.location.href = '/login';
             } else {
@@ -29,9 +34,17 @@ export default function resetPass({onClose}) {
             }
         } catch (error) {
             console.error('Error during reset password:', error);
+        }finally {
+            setLoading(false); // Set lo    ading state back to false after backend request completes
+            onClose(); // Close the dialog regardless of the outcome
         }
 
-        onClose();
+        // onClose();
+    };
+
+    const handleCloseAlert = () => {
+        setAlertShown(false); // Hide the alert
+        // Add logic here to redirect to '/login' if needed
     };
 
     const handleClose = () => {
@@ -55,13 +68,21 @@ export default function resetPass({onClose}) {
                                 <Label htmlFor="username">Username</Label>
                                 <Input placeholder="User Name" type="text" value={userName} onChange={(e) => setUserName(e.target.value)} />
                             </div>
-                            <Button className="w-full" onClick={handleFormSubmit} type="submit">
-                                Send reset email
+                            <Button className="w-full" onClick={handleFormSubmit} type="submit" disabled={loading}>
+                                {loading ? 'Sending...' : 'Send reset email'}
                             </Button>
                         </div>
                     </CardContent>
                 </Card>
             </DialogContent>
+            {alertShown && (
+                <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center bg-black bg-opacity-50 z-50">
+                    <div className="bg-white p-6 rounded-md">
+                        <p>Email sent successfully!</p>
+                        <button onClick={handleCloseAlert}>OK</button>
+                    </div>
+                </div>
+            )}
         </Dialog>
     )
 }
