@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -18,17 +17,22 @@ export default function Login() {
     try {
       const response = await fetch(`https://fypbackend-production-d00d.up.railway.app/api/auth/login/`, {
         method: 'POST',
+        // mode:'no-cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
           username: userName,
           password: password,
+          type: 'educator'
         }),
       });
       if (response.ok) {
+        let msg = await response.json();
         setError("none");
-        console.log('User logged in successfully!');
+        console.log('User logged in successfully!',msg);
+        const accessToken = msg.access_token;
+        localStorage.setItem('accessToken', accessToken); // Store access token in local storage
         window.location.href = '/dash';
       } 
       else {
