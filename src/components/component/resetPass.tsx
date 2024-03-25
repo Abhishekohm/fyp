@@ -35,7 +35,7 @@ export default function resetPass({onClose}) {
         } catch (error) {
             console.error('Error during reset password:', error);
         }finally {
-            setLoading(false); // Set lo    ading state back to false after backend request completes
+            setLoading(false); // Set loading state back to false after backend request completes
             onClose(); // Close the dialog regardless of the outcome
         }
 

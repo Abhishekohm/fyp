@@ -11,7 +11,7 @@ export default function Signup() {
   const [userName, setUserName] = useState("");
   const [error, setError] = useState("none");
   const [password, setPassword] = useState("");
-  const [userType, setUT] = useState("Student");
+  const [userType, setUT] = useState("learner");
   // console.log(backendUrl);
 
   const handleSignUp = async (e: any) => {
@@ -68,20 +68,20 @@ export default function Signup() {
             <Button
               className="w-1/2 rounded-r-none "
               onClick={() => {
-                setUT("Student");
+                setUT("learner");
               }}
-              variant={userType === "Student" ? "secondary" : "outline"}
+              variant={userType === "learner" ? "secondary" : "outline"}
             >
-              Student
+              Learner
             </Button>
             <Button
               className="w-1/2 rounded-l-none "
               onClick={() => {
-                setUT("Teacher");
+                setUT("educator");
               }}
-              variant={userType === "Student" ? "outline" : "secondary"}
+              variant={userType === "learner" ? "outline" : "secondary"}
             >
-              Teacher
+              Educator
             </Button>
           </div>
 
