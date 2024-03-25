@@ -26,7 +26,7 @@ export const sections = [
             {
                 icon: CircleIcon,
                 text: 'Film & edit',
-                link: 'film '
+                link: 'film'
             },
             {
                 icon: SettingsIcon,

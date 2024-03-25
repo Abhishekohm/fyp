@@ -11,7 +11,7 @@ export default function DashboardLayout({
   return (
     <div>
       <ManageNavbar />
-      <div className="flex bg-gray-100 h-auto">
+      <div className="flex bg-gray-100" style={{minHeight: "100vh"}}>
         <Sidebar />
         <main className="flex-1 px-8 py-8">
           <header className="flex justify-between items-center">

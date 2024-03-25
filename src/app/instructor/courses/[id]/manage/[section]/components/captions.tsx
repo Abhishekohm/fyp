@@ -2,7 +2,7 @@ import React from 'react'
 
 const Captions = () => {
   return (
-    <div>Captions</div>
+    <div>Add Captions (optional).</div>
   )
 }
 

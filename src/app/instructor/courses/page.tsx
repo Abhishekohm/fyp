@@ -97,7 +97,9 @@ export default function Courses() {
                 <AvatarImage alt="Student" src="./../../assets/course.png" />
                 <AvatarFallback>AG</AvatarFallback>
               </Avatar>
-              <Button className="bg-[#6e44ff] text-white">New course</Button>
+              <Button className="bg-[#6e44ff] text-white">
+                <Link href="/instructor/course/create/1">New course</Link>
+              </Button>
             </div>
           </header>
           <div className="mt-6 flex space-x-4">
