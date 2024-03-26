@@ -1,6 +1,9 @@
 import Signup from "../../components/component/signup";
+import NotLoggedIn from "@/components/component/NotLoggedIn";
 export default function Home() {
   return (
-    <Signup/>
+    <NotLoggedIn>
+      <Signup />
+    </NotLoggedIn>
   );
 }

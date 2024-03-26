@@ -7,7 +7,7 @@ import { sections } from "./data";
 import { useParams } from "next/navigation";
 
 const Sidebar = () => {
-  const { section: selectedSection } = useParams();
+  const { section: selectedSection, id: courseid } = useParams();
   return (
     <aside className="w-64 px-4 py-8 bg-white border-r">
       <nav className="space-y-1">
@@ -25,7 +25,7 @@ const Sidebar = () => {
                         ? "border-l-8 border-black"
                         : ""
                     }`}
-                    href={`/instructor/courses/2323/manage/${link.link}`}
+                    href={`/instructor/courses/${courseid}/manage/${link.link}`}
                     key={id}
                   >
                     {/* <link.icon className="w-4 h-4 mr-2 text-gray-400" /> */}
