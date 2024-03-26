@@ -183,7 +183,7 @@ export default function Course({ params })
               : !loading && (<Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
               <div style={{ height: '500px',border: '1px solid rgba(0, 0, 0, 0.3)', }}>
                   <Viewer
-                      fileUrl={"https://uca08c9c2cfdb111a95d4e90360f.dl.dropboxusercontent.com/cd/0/get/CPw6nYGHv2g_7AD2sYxuO0bYBMXWvNnXJUrWphyrMkqIJpD09GQU8e-7lHDm01BGIrP-necnzXwmQDZ2mDUqOG6kO0MSTLXDjh9cgwEIivQwbFcB8pAddiFU_fzfJG2BYZgHnQ2KKRY19Nj3YzswbE9QFop_Gjzu-Q34LVXrS4dPmQ/file"}
+                      fileUrl={selectedCurriculum.content}
                       plugins={[
                         defaultLayoutPluginInstance,
                       ]}
