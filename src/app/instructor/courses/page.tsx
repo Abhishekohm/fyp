@@ -33,7 +33,7 @@ export default function Courses() {
   const [hover, setHover] = useState(false);
   const [loading, setLoading] = useState(true);
   const [courses, setCourses] = useState<any[]>([]);
-  const { auth,logout } = useAuthContext();
+  const { auth, logout } = useAuthContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -122,7 +122,8 @@ export default function Courses() {
             </div>
           </div>
           <div className="h-1/6 flex flex-col justify-end items-center">
-            <div className="flex my-4 mx-auto text-white cursor-pointer"
+            <div
+              className="flex my-4 mx-auto text-white cursor-pointer"
               onClick={() => {
                 logout && logout();
               }}
