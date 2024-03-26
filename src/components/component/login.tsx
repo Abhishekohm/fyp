@@ -21,7 +21,8 @@ export default function Login() {
     console.log(userType);
   }, [userType]);
 
-  const handleLogIn = async (e: any) => {
+  const handleLogIn = async (e: any) => {  
+
     e.preventDefault();
     console.log(userName);
     console.log(password);
