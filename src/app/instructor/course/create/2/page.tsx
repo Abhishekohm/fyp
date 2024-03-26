@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { SetStateAction, useState } from "react";
+import CreateCourseFormHeader from "../../../../../components/component/CreateFormHeader";
 
 export default function Component() {
   const [category, setCategory] = useState("");
@@ -27,26 +28,7 @@ export default function Component() {
 
   return (
     <div key="1" className="bg-white min-h-screen">
-      <header className="bg-[#2c2c2c] py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <Link
-              className="text-white text-lg font-semibold"
-              href="/instructor/courses/"
-            >
-              MitraBot
-            </Link>
-            <Button className="text-white bg-transparent hover:bg-white/10 border border-white">
-              <Link
-                className="text-white text-lg font-semibold"
-                href="/instructor/courses/"
-              >
-                Exit
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <CreateCourseFormHeader />
       <main className="max-w-4xl mx-auto p-8">
         <div className="flex flex-col justify-centter items-center space-y-6">
           <h1 className="text-4xl font-bold text-center text-black">
@@ -61,17 +43,27 @@ export default function Component() {
             </SelectTrigger>
             <SelectContent className="bg-black text-white" position="popper">
               <SelectItem value="design">Design</SelectItem>
-              <SelectItem value="it">IT & Development</SelectItem>
-              <SelectItem value="security">Security</SelectItem>
-              <SelectItem value="development">Development</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
+              <SelectItem value="web development">Web Development</SelectItem>
+              <SelectItem value="it & software">IT & Software</SelectItem>
+              <SelectItem value="test prep">Test Preparation</SelectItem>
+              <SelectItem value="game development">Game Development</SelectItem>
+              <SelectItem value="office productivity">
+                Office Productivity
+              </SelectItem>
+              <SelectItem value="data Science">Data Science</SelectItem>
+              <SelectItem value="engineering">Engineering</SelectItem>
+              <SelectItem value="computer science">Computer Science</SelectItem>
+              <SelectItem value="math & science">Math & Science</SelectItem>
             </SelectContent>
           </Select>
           <div className="flex w-full justify-between text-black">
             <Button variant="outline">
               <Link href="/instructor/course/create/1">Previous</Link>
             </Button>
-            <Button className="text-white bg-black" onClick={handleContinue}>
+            <Button
+              className="text-white bg-purple-600"
+              onClick={handleContinue}
+            >
               Continue
             </Button>
           </div>

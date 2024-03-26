@@ -1,7 +1,5 @@
 "use client";
-import { Checkbox } from "@/components/ui/checkbox"
 import { Button } from "@/components/ui/button"
-
 import { useState, useEffect } from "react";
 import ReactPlayer from "react-player";
 import Overview from "./components/overview";
@@ -15,7 +13,7 @@ import Loader from "./components/loader"; // Assuming you have a Loader componen
 // import { ChevronDownIcon } from "./components/icons"; // Assuming you have a ChevronDownIcon component
 import { Tabs } from "@/components/ui/tabs";
 
-export default function Course({ params }) {
+export default function Course({ params }:{params:any}) {
   const [tab, setTab] = useState("Announcements");
   const [courseData, setCourseData] = useState(null);
   const [curriculum, setCurriculum] = useState(null);
@@ -31,7 +29,7 @@ export default function Course({ params }) {
     return localStorage.getItem("accessToken");
   };
 
-  async function fetchFromAPI(endpoint) {
+  async function fetchFromAPI(endpoint:any) {
     setLoading(true);
     try {
       const token = getAccessToken();
@@ -73,117 +71,123 @@ export default function Course({ params }) {
   }, []);
 
   return (
-    <div className="flex flex-col h-screen">
-      <header className="bg-gray-800 text-white p-4">
-        <div className="text-lg font-bold">MitraBot</div>
-        <h1 className="text-2xl font-bold">Course | {courseData?.data.name}</h1>
-      </header>
-      <div className="flex h-full">
-        <nav className="w-64 bg-gray-800 p-4 text-white">
-          <h2 className="text-xl font-semibold pb-4">Course Content</h2>
-          <hr className="mb-4" />
-          <div className="space-y-2">
-            {loading && <Loader />}
-            {curriculum &&
-              curriculum.data.map((section) => (
-                <details key={section.id} className="group">
-                  <summary className="flex justify-between cursor-pointer">
-                    <span>{section.name}</span>
-                    <ChevronDownIcon className="text-gray-400 group-open:rotate-180 transition-transform" />
-                  </summary>
-                  <ul className="pl-4 space-y-1 mt-2">
-                    {section.curriculum_item.map((item) => (
-                      <li
-                        key={item.id}
-                        onClick={() => setSelectedCurriculum(item)}
-                        className={selectedCurriculum===item?"bg-gray-500 cursor-pointer hover:bg-gray-600 rounded py-1 px-2":"bg-gray-700 cursor-pointer hover:bg-gray-600 rounded py-1 px-2"}
-                      >
-                        {item.name}
-                      </li>
-                    ))}
-                  </ul>
-                </details>
-              ))}
-          </div>
-        </nav>
+      <div className="flex flex-col h-screen">
+        <header className="bg-gray-800 text-white p-4">
+          <div className="text-lg font-bold">MitraBot</div>
+          <h1 className="text-2xl font-bold">
+            Course | {courseData?.data.name}
+          </h1>
+        </header>
+        <div className="flex h-full">
+          <nav className="w-64 bg-gray-800 p-4 text-white">
+            <h2 className="text-xl font-semibold pb-4">Course Content</h2>
+            <hr className="mb-4" />
+            <div className="space-y-2">
+              {loading && <Loader />}
+              {curriculum &&
+                curriculum.data.map((section) => (
+                  <details key={section.id} className="group">
+                    <summary className="flex justify-between cursor-pointer">
+                      <span>{section.name}</span>
+                      <ChevronDownIcon className="text-gray-400 group-open:rotate-180 transition-transform" />
+                    </summary>
+                    <ul className="pl-4 space-y-1 mt-2">
+                      {section.curriculum_item.map((item) => (
+                        <li
+                          key={item.id}
+                          onClick={() => setSelectedCurriculum(item)}
+                          className={
+                            selectedCurriculum === item
+                              ? "bg-gray-500 cursor-pointer hover:bg-gray-600 rounded py-1 px-2"
+                              : "bg-gray-700 cursor-pointer hover:bg-gray-600 rounded py-1 px-2"
+                          }
+                        >
+                          {item.name}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                ))}
+            </div>
+          </nav>
 
-        <main className="flex-1 p-4">
-          <div className="mb-4">
-            <h2 className="text-xl font-semibold mb-2">
-              {selectedCurriculum?.name}
-            </h2>
-            {selectedCurriculum ? (
-              <ReactPlayer
-                width="100%"
-                height="600px"
-                url={selectedCurriculum.content}
-                controls={true}
-                light={false}
-                pip={true}
-              />
-            ) : (
-              <p className="text-gray-500">Select a curriculum item</p>
-            )}
-          </div>
-          <div className="mb-4">
-            <Tabs>
-              <div className="flex space-x-2">
-                <Button
-                  variant={tab === "Overview" ? "secondary" : "ghost"}
-                  value={"Overview"}
-                  onClick={tabClick}
-                >
-                  Overview
-                </Button>
-                <Button
-                  variant={tab === "Q&A" ? "secondary" : "ghost"}
-                  value={"Q&A"}
-                  onClick={tabClick}
-                >
-                  Q&A
-                </Button>
-                <Button
-                  variant={tab === "Notes" ? "secondary" : "ghost"}
-                  value={"Notes"}
-                  onClick={tabClick}
-                >
-                  Notes
-                </Button>
-                <Button
-                  variant={tab === "Announcements" ? "secondary" : "ghost"}
-                  value={"Announcements"}
-                  onClick={tabClick}
-                >
-                  Announcements
-                </Button>
-                <Button
-                  variant={tab === "Reviews" ? "secondary" : "ghost"}
-                  value={"Reviews"}
-                  onClick={tabClick}
-                >
-                  Reviews
-                </Button>
-                <Button
-                  variant={tab === "Learning" ? "secondary" : "ghost"}
-                  value={"Learning"}
-                  onClick={tabClick}
-                >
-                  Learning Tools
-                </Button>
-              </div>
-            </Tabs>
-          </div>
-          <div>
-            {tab === "Overview" && <Overview />}
-            {tab === "Q&A" && <QA />}
-            {tab === "Notes" && <Notes />}
-            {tab === "Announcements" && <Announcements />}
-            {tab === "Reviews" && <Reviews />}
-            {tab === "Learning" && <Learning />}
-          </div>
-        </main>
+          <main className="flex-1 p-4">
+            <div className="mb-4">
+              <h2 className="text-xl font-semibold mb-2">
+                {selectedCurriculum?.name}
+              </h2>
+              {selectedCurriculum ? (
+                <ReactPlayer
+                  width="100%"
+                  height="600px"
+                  url={selectedCurriculum.content}
+                  controls={true}
+                  light={false}
+                  pip={true}
+                />
+              ) : (
+                <p className="text-gray-500">Select a curriculum item</p>
+              )}
+            </div>
+            <div className="mb-4">
+              <Tabs>
+                <div className="flex space-x-2">
+                  <Button
+                    variant={tab === "Overview" ? "secondary" : "ghost"}
+                    value={"Overview"}
+                    onClick={tabClick}
+                  >
+                    Overview
+                  </Button>
+                  <Button
+                    variant={tab === "Q&A" ? "secondary" : "ghost"}
+                    value={"Q&A"}
+                    onClick={tabClick}
+                  >
+                    Q&A
+                  </Button>
+                  <Button
+                    variant={tab === "Notes" ? "secondary" : "ghost"}
+                    value={"Notes"}
+                    onClick={tabClick}
+                  >
+                    Notes
+                  </Button>
+                  <Button
+                    variant={tab === "Announcements" ? "secondary" : "ghost"}
+                    value={"Announcements"}
+                    onClick={tabClick}
+                  >
+                    Announcements
+                  </Button>
+                  <Button
+                    variant={tab === "Reviews" ? "secondary" : "ghost"}
+                    value={"Reviews"}
+                    onClick={tabClick}
+                  >
+                    Reviews
+                  </Button>
+                  <Button
+                    variant={tab === "Learning" ? "secondary" : "ghost"}
+                    value={"Learning"}
+                    onClick={tabClick}
+                  >
+                    Learning Tools
+                  </Button>
+                </div>
+              </Tabs>
+            </div>
+            <div>
+              {tab === "Overview" && <Overview />}
+              {tab === "Q&A" && <QA />}
+              {tab === "Notes" && <Notes />}
+              {tab === "Announcements" && <Announcements />}
+              {tab === "Reviews" && <Reviews />}
+              {tab === "Learning" && <Learning />}
+            </div>
+          </main>
+        </div>
       </div>
-    </div>
   );
 }
 

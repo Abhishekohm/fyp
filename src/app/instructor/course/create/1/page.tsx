@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { SetStateAction, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import CreateCourseFormHeader from "../../../../../components/component/CreateFormHeader";
 
 export default function Component() {
   const router = useRouter();
@@ -22,26 +23,7 @@ export default function Component() {
 
   return (
     <div key="1" className="bg-white min-h-screen">
-      <header className="bg-[#2c2c2c] py-4">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex justify-between items-center">
-            <Link
-              className="text-white text-lg font-semibold"
-              href="/instructor/courses/"
-            >
-              MitraBot
-            </Link>
-            <Button className="text-white bg-transparent hover:bg-white/10 border border-white">
-              <Link
-                className="text-white text-lg font-semibold"
-                href="/instructor/courses/"
-              >
-                Exit
-              </Link>
-            </Button>
-          </div>
-        </div>
-      </header>
+      <CreateCourseFormHeader />
       <main className="max-w-4xl mx-auto p-8">
         <div className="flex flex-col justify-centter items-center space-y-6">
           <h1 className="text-4xl font-bold text-center text-black">
@@ -60,7 +42,10 @@ export default function Component() {
             <Button variant="outline" className="cursor-not-allowed">
               Previous
             </Button>
-            <Button className="text-white bg-black" onClick={handleContinue}>
+            <Button
+              className="text-white bg-purple-600"
+              onClick={handleContinue}
+            >
               Continue
             </Button>
           </div>
