@@ -180,7 +180,7 @@ export default function Course({ params })
                 controls={true}
                 pip={true}
               /> )
-              : !loading && (<Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
+              : (!loading && <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
               <div style={{ height: '500px',border: '1px solid rgba(0, 0, 0, 0.3)', }}>
                   <Viewer
                       fileUrl={selectedCurriculum.content}
@@ -204,7 +204,7 @@ export default function Course({ params })
                   Overview
                 </Button>
                 <Button
-                  variant={tab === "Q&A" ? "secondary" : "ghost"}
+                  variant={tab === "Q&A" ? "outline" : "ghost"}
                   value={"Q&A"}
                   onClick={tabClick}
                 >
