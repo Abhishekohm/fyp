@@ -187,35 +187,21 @@ export default function Course({ params }) {
                 onEnded={videoEnded}
                 // playIcon={<button>Play</button>}
                 // light={true}
-                url={selectedCurriculum.content}
+                url={selectedCurriculum?.content}
                 controls={true}
                 pip={true}
-<<<<<<< HEAD
               /> )
               : (!loading && <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
               <div style={{ height: '500px',border: '1px solid rgba(0, 0, 0, 0.3)', }}>
                   <Viewer
-=======
-              />
-            ) : (
-              !loading && (
-                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
-                  <div
-                    style={{
-                      height: "500px",
-                      border: "1px solid rgba(0, 0, 0, 0.3)",
-                    }}
-                  >
-                    <Viewer
->>>>>>> 8d1eeb0780d3e793ee551a8f25e7eb43b9a1859f
-                      fileUrl={selectedCurriculum.content}
+                      fileUrl={selectedCurriculum?.content}
                       plugins={[defaultLayoutPluginInstance]}
                       theme="dark"
                     />
                   </div>
                 </Worker>
               )
-            )}
+            }
           </div>
           <div className="mb-4">
             <Tabs>

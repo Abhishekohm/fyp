@@ -73,9 +73,8 @@ export default function Courses() {
             <div className="flex my-4 mx-auto text-white cursor-pointer">
               <HomeIcon />
               <span
-                className={`${
-                  hover ? "block" : "hidden"
-                } mx-2 transition-all duration-300`}
+                className={`${hover ? "block" : "hidden"
+                  } mx-2 transition-all duration-300`}
               >
                 Home
               </span>
@@ -83,9 +82,8 @@ export default function Courses() {
             <div className="flex my-4 mx-auto text-white cursor-pointer">
               <BookIcon />
               <span
-                className={`${
-                  hover ? "block" : "hidden"
-                } mx-2 transition-all duration-300`}
+                className={`${hover ? "block" : "hidden"
+                  } mx-2 transition-all duration-300`}
               >
                 Courses
               </span>
@@ -93,9 +91,8 @@ export default function Courses() {
             <div className="flex my-4 mx-auto text-white cursor-pointer">
               <GroupIcon />
               <span
-                className={`${
-                  hover ? "block" : "hidden"
-                } mx-2 transition-all duration-300`}
+                className={`${hover ? "block" : "hidden"
+                  } mx-2 transition-all duration-300`}
               >
                 Home
               </span>
@@ -103,9 +100,8 @@ export default function Courses() {
             <div className="flex my-4 mx-auto text-white cursor-pointer">
               <BarChartIcon />
               <span
-                className={`${
-                  hover ? "block" : "hidden"
-                } mx-2 transition-all duration-300`}
+                className={`${hover ? "block" : "hidden"
+                  } mx-2 transition-all duration-300`}
               >
                 Home
               </span>
@@ -113,9 +109,8 @@ export default function Courses() {
             <div className="flex my-4 mx-auto text-white cursor-pointer">
               <CircleIcon />
               <span
-                className={`${
-                  hover ? "block" : "hidden"
-                } mx-2 transition-all duration-300`}
+                className={`${hover ? "block" : "hidden"
+                  } mx-2 transition-all duration-300`}
               >
                 Home
               </span>
@@ -130,9 +125,8 @@ export default function Courses() {
             >
               <LogoutIcon />
               <span
-                className={`${
-                  hover ? "block" : "hidden"
-                } mx-2 transition-all duration-300`}
+                className={`${hover ? "block" : "hidden"
+                  } mx-2 transition-all duration-300`}
               >
                 Logout
               </span>
