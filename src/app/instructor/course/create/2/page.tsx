@@ -27,6 +27,11 @@ export default function Component() {
     setCategory(e);
   }
 
+  function handlePrevious(): void {
+    localStorage.setItem("category", category);
+    router.push("/instructor/course/create/1");
+  }
+
   return (
     <div key="1" className="bg-white min-h-screen">
       <CreateCourseFormHeader />
@@ -58,8 +63,8 @@ export default function Component() {
             </SelectContent>
           </Select>
           <div className="flex w-full justify-between text-black">
-            <Button variant="outline">
-              <Link href="/instructor/course/create/1">Previous</Link>
+            <Button onClick={handlePrevious} variant="outline">
+              Previous
             </Button>
             <Button
               className="text-white bg-purple-600"
