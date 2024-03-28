@@ -12,7 +12,7 @@ import { toast, Bounce } from "react-toastify";
 
 export default function Component() {
   const router = useRouter();
-  const [desc, setDesc] = useState("none");
+  const [desc, setDesc] = useState(localStorage.getItem("desc") || "none");
   const { auth } = useAuthContext();
   const [loading, setLoading] = useState(false);
 
@@ -49,6 +49,7 @@ export default function Component() {
       if (response.ok) {
         console.log("Course created successfully!");
         localStorage.removeItem("title");
+        localStorage.removeItem("desc");
         localStorage.removeItem("category");
         const res = await response.json();
         toast.success(`Course created sucessfully. Redirecting...`, {
@@ -65,8 +66,9 @@ export default function Component() {
         setTimeout(() => {
           setLoading(false);
           router.push(`/instructor/courses/${res.data.id}/manage/goals`);
-        },2000)
-      } else {
+        }, 2000)
+      }
+      else {
         let msg = await response.json();
         console.log("Failed to create course!!:", msg);
         toast.error(`${msg?.message}.`, {
@@ -88,6 +90,10 @@ export default function Component() {
     }
   };
 
+  function previousPage(): void {
+    localStorage.setItem("desc", desc);
+  }
+
   return (
     <>
       {loading && <NoClick />}
@@ -100,12 +106,13 @@ export default function Component() {
             </h1>
             <p className="text-lg text-center text-black">Keep it simple.</p>
             <Textarea
+            value={desc}
               onChange={inputDesc}
               className="min-h-[250px] w-full bg-black text-white"
               placeholder="Description"
             />
             <div className="flex w-full justify-between text-black">
-              <Button variant="outline">
+              <Button onClick={previousPage} variant="outline">
                 <Link href="/instructor/course/create/2">Previous</Link>
               </Button>
               <Button

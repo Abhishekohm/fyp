@@ -13,16 +13,17 @@ import { SetStateAction, useState } from "react";
 import CreateCourseFormHeader from "../../../../../components/component/CreateFormHeader";
 
 export default function Component() {
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(localStorage.getItem("category") || "");
   const router = useRouter();
 
   function handleContinue() {
     localStorage.setItem("category", category);
-    console.log("Click 2");
+    // console.log("Click 2");
     router.push("/instructor/course/create/3");
   }
 
   function inputCategory(e: SetStateAction<string>) {
+    console.log(e);
     setCategory(e);
   }
 
@@ -37,7 +38,7 @@ export default function Component() {
           <p className="text-lg text-center text-black">
             Choose a category for your course.
           </p>
-          <Select onValueChange={inputCategory}>
+          <Select value={category} onValueChange={inputCategory}>
             <SelectTrigger id="section1" className="bg-black text-white w-3/4">
               <SelectValue placeholder="Select Category" />
             </SelectTrigger>

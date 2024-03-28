@@ -8,7 +8,7 @@ import CreateCourseFormHeader from "../../../../../components/component/CreateFo
 
 export default function Component() {
   const router = useRouter();
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState(localStorage.getItem("title") || "");
   // const router = useRouter();
 
   function handleContinue() {
@@ -37,6 +37,8 @@ export default function Component() {
             placeholder="e.g., Learn Photoshop CS6 from Scratch"
             type="text"
             onChange={inputTitle}
+            value={title}
+            // value={localStorage.getItem("title")?localStorage.getItem("title"):""}
           />
           <div className="flex w-full justify-between text-black">
             <Button variant="outline" className="cursor-not-allowed">
