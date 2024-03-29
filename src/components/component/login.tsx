@@ -93,20 +93,20 @@ export default function Login() {
       <div className="h-screen">
         <header className="flex items-center justify-between h-[70px] px-4 bg-black shadow-md">
           <div className="text-3xl font-bold text-white">OpenAcademy</div>
-          <Button className="px-4 py-2 m-4 bg-purple-600 text-white rounded-md">
+          <Button className="px-4 py-2 m-4 bg-teal-600 text-white rounded-md">
             <Link href="/signup">Sign Up</Link>
           </Button>
         </header>
-        <div className="flex  h-5/6 items-center justify-center">
+        <div className="flex  text-black h-5/6 items-center justify-center">
           <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow-lg">
-            <h1 className="text-center text-2xl font-bold">
+            <h1 className="text-center text-black text-2xl font-bold">
               Login to OpenAcademy!
             </h1>
             <div className="flex justify-between mb-4">
               {/* UserType buttons */}
               <Button
                 className={`w-1/3 rounded-r-none ${
-                  userType === "learner" ? "border border-black" : ""
+                  userType === "learner" ? "border border-black" : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("learner");
@@ -116,7 +116,7 @@ export default function Login() {
               </Button>
               <Button
                 className={`w-1/3 rounded-none ${
-                  userType === "reviewer" ? "border border-black" : ""
+                  userType === "reviewer" ? "border border-black" : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("reviewer");
@@ -126,7 +126,7 @@ export default function Login() {
               </Button>
               <Button
                 className={`w-1/3 rounded-l-none ${
-                  userType === "educator" ? "border border-black" : ""
+                  userType === "educator" ? "border border-black" : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("educator");
@@ -135,7 +135,7 @@ export default function Login() {
                 Teacher
               </Button>
             </div>
-            <form onSubmit={handleLogIn} className="space-y-6">
+            <form onSubmit={handleLogIn} className="text-white space-y-6">
               <div>
                 <Input
                   placeholder="User Name"
@@ -159,9 +159,9 @@ export default function Login() {
                 Forgot password?
               </Link>
 
-              <Button className="w-full bg-purple-600 text-white text-lg">
+              <Button className="w-full bg-teal-600 text-white text-lg" disabled={loading}>
                 {loading
-                  ? "Verifying your credentials. Hang tight..."
+                  ? "Verifying your credentials..."
                   : "Login"}
               </Button>
             </form>

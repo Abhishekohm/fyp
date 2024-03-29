@@ -146,14 +146,14 @@ export default function Signup() {
           </Button>
         </header>
         <div className="flex h-5/6 items-center justify-center">
-          <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow-lg">
+          <div className="w-full max-w-md p-8 space-y-3 rounded-xl bg-white shadow-lg text-black">
             <h1 className="text-center text-2xl font-bold">
               Sign Up to OpenAcademy!
             </h1>
             <div className="flex justify-between my-4">
               <Button
                 className={`w-1/2 rounded-r-none ${
-                  userType === "learner" ? "border border-black" : ""
+                  userType === "learner" ? "border border-black" : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("learner");
@@ -163,7 +163,7 @@ export default function Signup() {
               </Button>
               <Button
                 className={`w-1/2 rounded-l-none ${
-                  userType === "educator" ? "border border-black" : ""
+                  userType === "educator" ? "border border-black" : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("educator");
@@ -173,7 +173,7 @@ export default function Signup() {
               </Button>
             </div>
 
-            <form onSubmit={handleSignUp} className="space-y-6">
+            <form onSubmit={handleSignUp} className="space-y-6 text-white">
               <div>
                 <Input
                   placeholder="User Name"
