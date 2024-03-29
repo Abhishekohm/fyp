@@ -173,7 +173,7 @@ export default function Signup() {
               </Button>
             </div>
 
-            <form onSubmit={handleSignUp} className="space-y-6 text-white">
+            <form onSubmit={handleSignUp} className="space-y-6 text-black">
               <div>
                 <Input
                   placeholder="User Name"
