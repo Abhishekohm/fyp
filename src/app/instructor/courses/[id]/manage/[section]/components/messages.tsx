@@ -1,199 +1,153 @@
-import { Textarea } from "@/components/ui/textarea"
-import { Button } from "@/components/ui/button"
+"use client";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useAuthContext } from "@/hooks/authhooks";
+import Spinner from "@/components/component/spinner";
+import { Bounce, toast } from "react-toastify";
+import { useParams } from "next/navigation";
+import NoClick from "@/components/component/NoClick";
 
 export default function Messages() {
+  const [welcomeMessage, setWelcomeMessage] = useState("");
+  const [congMessage, setCongMessage] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
+  const { auth } = useAuthContext();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchCourseDetails = async () => {
+      try {
+        const response = await axios.get(
+          `https://fypbackend-production-d00d.up.railway.app/api/course/${id}/details`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${auth.accessToken}`,
+            },
+          }
+        );
+        if (response.data.data.cong_message)
+          setCongMessage(response.data.data.cong_message);
+        if (response.data.data.welcome_message)
+          setWelcomeMessage(response.data.data.welcome_message);
+        
+        setLoading(false);
+      } catch (e) {
+        console.log("Error Fetching Details:", e);
+        setLoading(false);
+      }
+    };
+    fetchCourseDetails();
+  }, []);
+
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log(congMessage);
+    console.log(welcomeMessage);
+    setUpdating(true);
+    try {
+      const response = await axios.patch(
+        `https://fypbackend-production-d00d.up.railway.app/api/course/${id}/update/`,
+        {
+          cong_message: congMessage,
+          welcome_message: welcomeMessage,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${auth.accessToken}`,
+          },
+        }
+      );
+      console.log(response.data);
+      toast.success(`Course updated successfully.`, {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      setUpdating(false);
+    } catch (e: any) {
+      console.log("Error updating the couse:", e);
+      toast.error(`${e?.response?.data?.message || e.message}.`, {
+        position: "bottom-right",
+        autoClose: 1000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
+      setUpdating(false);
+    }
+  };
+
   return (
-    // <div className="min-h-screen bg-gray-100 p-8">
-      <div className="flex">
-        <main className="flex-1">
-          <div className="bg-white p-6 rounded-md shadow">
-            <h2 className="text-xl font-semibold mb-4">Course messages</h2>
-            <p className="text-sm mb-6">
-              Write messages to your students (optional) that will be sent automatically when they join or complete your
-              course to encourage students to engage with course content. If you do not wish to send a welcome or
-              congratulations message, leave the text box blank.
-            </p>
-            <div className="flex flex-col space-y-4">
-              <div>
-                <h3 className="text-lg font-medium mb-2">Welcome Message</h3>
-                {/* <div className="flex items-center space-x-2 border-b pb-2">
-                  <BoldIcon className="h-5 w-5 text-gray-500" />
-                  <ItalicIcon className="h-5 w-5 text-gray-500" />
-                  <ListIcon className="h-5 w-5 text-gray-500" />
-                  <AlignLeftIcon className="h-5 w-5 text-gray-500" />
-                  <LinkIcon className="h-5 w-5 text-gray-500" />
-                </div> */}
-                <Textarea placeholder="Type your welcome message here." />
+    <>
+      {updating && <NoClick />}
+      {loading ? (
+        <div className="h-[400px] flex justify-center items-center">
+          <Spinner h={16} w={16} />
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit}>
+          <div className="flex">
+            <main className="flex-1">
+              <div className="bg-white p-6 rounded-md shadow">
+                <h2 className="text-xl font-semibold mb-4">Course messages</h2>
+                <p className="text-sm mb-6">
+                  Write messages to your students (optional) that will be sent
+                  automatically when they join or complete your course to
+                  encourage students to engage with course content. If you do
+                  not wish to send a welcome or congratulations message, leave
+                  the text box blank.
+                </p>
+                <div className="flex flex-col space-y-4">
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">
+                      Welcome Message
+                    </h3>
+                    <Textarea
+                      placeholder="Type your welcome message here."
+                      value={welcomeMessage}
+                      onChange={(e) => {
+                        setWelcomeMessage(e.target.value);
+                      }}
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium mb-2">
+                      Congratulations Message
+                    </h3>
+                    <Textarea
+                      placeholder="Type your congratulations message here."
+                      value={congMessage}
+                      onChange={(e) => {
+                        setCongMessage(e.target.value);
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="flex justify-end mt-6">
+                  <Button className="bg-purple-600 text-white" type="submit">
+                    {updating ? "Saving..." : "Save"}
+                  </Button>
+                </div>
               </div>
-              <div>
-                <h3 className="text-lg font-medium mb-2">Congratulations Message</h3>
-                {/* <div className="flex items-center space-x-2 border-b pb-2">
-                  <BoldIcon className="h-5 w-5 text-gray-500" />
-                  <ItalicIcon className="h-5 w-5 text-gray-500" />
-                  <ListIcon className="h-5 w-5 text-gray-500" />
-                  <AlignLeftIcon className="h-5 w-5 text-gray-500" />
-                  <LinkIcon className="h-5 w-5 text-gray-500" />
-                </div> */}
-                <Textarea placeholder="Type your congratulations message here." />
-              </div>
-            </div>
-            <div className="flex justify-end mt-6">
-              <Button className="bg-black hover:bg-gray-700 text-white">Save</Button>
-            </div>
+            </main>
           </div>
-        </main>
-      </div>
-    // </div>
-  )
-}
-
-function AlignLeftIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="21" x2="3" y1="6" y2="6" />
-      <line x1="15" x2="3" y1="12" y2="12" />
-      <line x1="17" x2="3" y1="18" y2="18" />
-    </svg>
-  )
-}
-
-
-function BoldIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M14 12a4 4 0 0 0 0-8H6v8" />
-      <path d="M15 20a4 4 0 0 0 0-8H6v8Z" />
-    </svg>
-  )
-}
-
-
-function CheckCircleIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
-      <polyline points="22 4 12 14.01 9 11.01" />
-    </svg>
-  )
-}
-
-
-function CircleIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <circle cx="12" cy="12" r="10" />
-    </svg>
-  )
-}
-
-
-function ItalicIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="19" x2="10" y1="4" y2="4" />
-      <line x1="14" x2="5" y1="20" y2="20" />
-      <line x1="15" x2="9" y1="4" y2="20" />
-    </svg>
-  )
-}
-
-
-function LinkIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
-      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
-    </svg>
-  )
-}
-
-
-function ListIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <line x1="8" x2="21" y1="6" y2="6" />
-      <line x1="8" x2="21" y1="12" y2="12" />
-      <line x1="8" x2="21" y1="18" y2="18" />
-      <line x1="3" x2="3.01" y1="6" y2="6" />
-      <line x1="3" x2="3.01" y1="12" y2="12" />
-      <line x1="3" x2="3.01" y1="18" y2="18" />
-    </svg>
-  )
+        </form>
+      )}
+    </>
+  );
 }

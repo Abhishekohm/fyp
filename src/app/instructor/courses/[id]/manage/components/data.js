@@ -33,16 +33,16 @@ export const sections = [
                 text: 'Curriculum',
                 link: 'curriculum'
             },
-            {
-                icon: CircleIcon,
-                text: 'Captions (optional)',
-                link: 'captions'
-            },
         ]
     },
     {
         title: 'Publish your course',
         links: [
+            {
+                icon: CircleIcon,
+                text: 'Course Landing Page',
+                link: 'basics'
+            },
             {
                 icon: CircleIcon,
                 text: 'Course messages',
