@@ -9,7 +9,7 @@ import { JSX, SVGProps } from "react";
 
 export function ManageNavbar() {
   return (
-    <div className="bg-gray-900 text-white px-4 py-2 flex items-center justify-between sticky top-0 z-50">
+    <div className="bg-gray-900 text-white px-4 py-2 flex items-center justify-between sticky top-0 z-50" style={{height: "7vh"}}>
       <Link className="flex items-center space-x-4" href="/instructor/courses/">
         <ChevronLeftIcon className="text-white" />
         <p className="text-blue-500 hover:text-blue-400">Back to courses</p>

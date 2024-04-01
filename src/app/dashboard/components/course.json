@@ -1,0 +1,241 @@
+{
+    "status": true,
+    "data": [
+        {
+            "id": 22,
+            "name": "Sachit Course",
+            "description": "New Course Description",
+            "category": "design",
+            "educator": {
+                "id": 4,
+                "username": "sachitsankhe",
+                "email": "justiceleaguer006@gmail.com",
+                "password": "pbkdf2_sha256$390000$BMx8D2ysPA8xTnlggCjyZP$+d+2e0IfzlfRraY96Zh2ASc8T6VORWpXxVbGbBNXb5Q=",
+                "type": "educator",
+                "verified": true,
+                "firstname": "Husseir",
+                "lastname": "Nasser"
+            },
+            "course_outcome": "[]",
+            "prerequisites": "[]",
+            "target_audience": "[]",
+            "course_image": null,
+            "section": "20",
+            "date_of_creation": "2024-03-27T19:01:40.642000+05:30",
+            "date_of_updation": "2024-03-30T17:13:27.119000+05:30",
+            "under_review": false,
+            "approved": true,
+            "number_of_approvals": 3,
+            "number_of_rejection": 1,
+            "safe_delete": false,
+            "welcome_message": "Welcome to the course. Hope that you will get to learn a lot of new things and gain new insights",
+            "cong_message": null,
+            "course_language": "english",
+            "tags": "[]",
+            "history": {
+                "completed_course": false,
+                "completed_curriculum_items": 0,
+                "total_curriculum_items": 16,
+                "latest_seen_curriculum_item": null,
+                "curriculum_items": {
+                    "16": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "18": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "19": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "20": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "22": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "24": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "28": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "29": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "30": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "31": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "32": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "33": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "37": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "38": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "39": {
+                        "completed": false,
+                        "last_viewed": null
+                    },
+                    "25": {
+                        "completed": false,
+                        "last_viewed": null
+                    }
+                }
+            }
+        },
+        {
+            "id": 23,
+            "name": "Database Management Systems(DBMS)",
+            "description": "In this course, I have covered all the chapters & concepts of DBMS, this course is helpful for students appearing for the GATE exam, university exams, or even working professionals. Thank you for learning from me.",
+            "category": "CS Fundamentals",
+            "educator": {
+                "id": 4,
+                "username": "mithikawalkar",
+                "email": "mithikawalkar.dsa@gmail.com",
+                "password": "pbkdf2_sha256$390000$BMx8D2ysPA8xTnlggCjyZP$+d+2e0IfzlfRraY96Zh2ASc8T6VORWpXxVbGbBNXb5Q=",
+                "type": "educator",
+                "verified": true,
+                "firstname": "Mithilesh",
+                "lastname": "Kawalkar"
+            },
+            "course_outcome": "[]",
+            "prerequisites": "[]",
+            "target_audience": "[]",
+            "course_image": null,
+            "section": "20",
+            "date_of_creation": "2024-03-27T19:01:40.642000+05:30",
+            "date_of_updation": "2024-03-30T17:13:27.119000+05:30",
+            "under_review": false,
+            "approved": true,
+            "number_of_approvals": 8,
+            "number_of_rejection": 0,
+            "safe_delete": false,
+            "welcome_message": "Welcome to the course. Hope that you will get to learn a lot of new things and gain new insights",
+            "cong_message": null,
+            "course_language": "english",
+            "tags": "[]",
+            "history": {
+                "completed_course": false,
+                "completed_curriculum_items": 0,
+                "total_curriculum_items": 16,
+                "latest_seen_curriculum_item": null,
+                "curriculum_items": {
+                    "18": {
+                        "completed": false,
+                        "last_viewed": null
+                    }
+                }
+            }
+        },{
+            "id": 21,
+            "name": "The Complete JavaScript Course",
+            "description": "In this course, I have covered all the chapters & concepts of DBMS, this course is helpful for students appearing for the GATE exam, university exams, or even working professionals. Thank you for learning from me.",
+            "category": "Web Devlopment",
+            "educator": {
+                "id": 10,
+                "username": "mnk",
+                "email": "mk.mk@gmail.com",
+                "password": "pbkdf2_sha256$390000$BMx8D2ysPA8xTnlggCjyZP$+d+2e0IfzlfRraY96Zh2ASc8T6VORWpXxVbGbBNXb5Q=",
+                "type": "educator",
+                "verified": true,
+                "firstname": "Jonas",
+                "lastname": "Schmedtmann"
+            },
+            "course_outcome": "[]",
+            "prerequisites": "[]",
+            "target_audience": "[]",
+            "course_image": null,
+            "section": "20",
+            "date_of_creation": "2024-03-27T19:01:40.642000+05:30",
+            "date_of_updation": "2024-03-30T17:13:27.119000+05:30",
+            "under_review": false,
+            "approved": true,
+            "number_of_approvals": 8,
+            "number_of_rejection": 0,
+            "safe_delete": false,
+            "welcome_message": "Welcome to the course. Hope that you will get to learn a lot of new things and gain new insights",
+            "cong_message": null,
+            "course_language": "english",
+            "tags": "[]",
+            "history": {
+                "completed_course": false,
+                "completed_curriculum_items": 0,
+                "total_curriculum_items": 16,
+                "latest_seen_curriculum_item": null,
+                "curriculum_items": {
+                    "18": {
+                        "completed": false,
+                        "last_viewed": null
+                    }
+                }
+            }
+        },
+        {
+            "id": 21,
+            "name": "The Complete Digital Marketing Course",
+            "description": "In this course, I have covered all the chapters & concepts of DBMS, this course is helpful for students appearing for the GATE exam, university exams, or even working professionals. Thank you for learning from me.",
+            "category": "Marketing",
+            "educator": {
+                "id": 4,
+                "username": "walsh",
+                "email": "walsh.market@gmail.com",
+                "password": "pbkdf2_sha256$390000$BMx8D2ysPA8xTnlggCjyZP$+d+2e0IfzlfRraY96Zh2ASc8T6VORWpXxVbGbBNXb5Q=",
+                "type": "educator",
+                "verified": true,
+                "firstname": "Daragh",
+                "lastname": "Walsh"
+            },
+            "course_outcome": "[]",
+            "prerequisites": "[]",
+            "target_audience": "[]",
+            "course_image": null,
+            "section": "20",
+            "date_of_creation": "2024-03-27T19:01:40.642000+05:30",
+            "date_of_updation": "2024-03-30T17:13:27.119000+05:30",
+            "under_review": false,
+            "approved": true,
+            "number_of_approvals": 8,
+            "number_of_rejection": 0,
+            "safe_delete": false,
+            "welcome_message": "Welcome to the course. Hope that you will get to learn a lot of new things and gain new insights",
+            "cong_message": null,
+            "course_language": "spanish",
+            "tags": "[]",
+            "history": {
+                "completed_course": false,
+                "completed_curriculum_items": 0,
+                "total_curriculum_items": 16,
+                "latest_seen_curriculum_item": null,
+                "curriculum_items": {
+                    "18": {
+                        "completed": false,
+                        "last_viewed": null
+                    }
+                }
+            }
+        }
+        
+    ]
+}

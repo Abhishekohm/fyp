@@ -11,9 +11,9 @@ export default function DashboardLayout({
   return (
     <div>
       <ManageNavbar />
-      <div className="flex bg-gray-100" style={{minHeight: "100vh"}}>
+      <div className="flex bg-gray-100 overflow-y-hidden" style={{height: "93vh"}}>
         <Sidebar />
-        <main className="flex-1 px-8 py-8">
+        <main className="overflow-y-scroll flex-1 px-8 py-8">
           <header className="flex justify-between items-center">
             <h1 className="text-2xl font-semibold">Teaching Blockchain</h1>
             <div className="flex items-center space-x-4">

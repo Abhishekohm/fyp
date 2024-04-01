@@ -12,7 +12,7 @@ import { toast, Bounce } from "react-toastify";
 
 export default function Component() {
   const router = useRouter();
-  const [desc, setDesc] = useState(localStorage.getItem("desc") || "none");
+  const [desc, setDesc] = useState(localStorage.getItem("desc") || "");
   const { auth } = useAuthContext();
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Component() {
     setLoading(true);
     let title: any = localStorage.getItem("title");
     let cat: any = localStorage.getItem("category");
-    title = title?.toLowerCase();
+    // title = title?.toLowerCase();
     cat = cat?.toLowerCase();
     const token = auth.accessToken;
     console.log(token);
@@ -71,7 +71,7 @@ export default function Component() {
       else {
         let msg = await response.json();
         console.log("Failed to create course!!:", msg);
-        toast.error(`${msg?.message}.`, {
+        toast.error(`${msg?.message} ${msg.error!==null && msg.error.description}`, {
           position: "bottom-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -84,9 +84,22 @@ export default function Component() {
         });
         setLoading(false);
       }
-    } catch (error) {
-      setLoading(false);
+    } 
+    catch (error) 
+    {
+        toast.error(error, {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       console.log("Error during create course:", error);
+      setLoading(false);
     }
   };
 
@@ -118,6 +131,7 @@ export default function Component() {
               <Button
                 className="text-white bg-purple-600"
                 onClick={createCourse}
+                disabled={loading}
               >
                 {loading ? "Creating course..." : "Create course"}
               </Button>
