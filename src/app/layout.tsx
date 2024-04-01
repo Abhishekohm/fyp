@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body style={{ minHeight: "100vh" }}>
+      <body style={{ minHeight: "100vh" }} className="overflow-x-hidden">
         <ToastContainer />
         <AuthWrapper>{children}</AuthWrapper>
       </body>

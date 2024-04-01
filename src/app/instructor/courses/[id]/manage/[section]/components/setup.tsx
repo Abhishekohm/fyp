@@ -2,7 +2,7 @@ import React from "react";
 
 const Setup = () => {
   return (
-    <div>
+    <div className="bg-white p-6 rounded-md shadow">
       <div className="mt-6 mb-6 space-y-4">
         <h2 className="text-xl font-bold text-gray-900">
           Arrange your ideal studio and get early feedback

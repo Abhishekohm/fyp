@@ -21,8 +21,7 @@ export default function Login() {
     console.log(userType);
   }, [userType]);
 
-  const handleLogIn = async (e: any) => {  
-
+  const handleLogIn = async (e: any) => {
     e.preventDefault();
     console.log(userName);
     console.log(password);
@@ -93,7 +92,7 @@ export default function Login() {
       <div className="h-screen">
         <header className="flex items-center justify-between h-[70px] px-4 bg-black shadow-md">
           <div className="text-3xl font-bold text-white">OpenAcademy</div>
-          <Button className="px-4 py-2 m-4 bg-teal-600 text-white rounded-md">
+          <Button className="px-4 py-2 m-4 bg-teal-600 text-black rounded-md">
             <Link href="/signup">Sign Up</Link>
           </Button>
         </header>
@@ -106,7 +105,9 @@ export default function Login() {
               {/* UserType buttons */}
               <Button
                 className={`w-1/3 rounded-r-none ${
-                  userType === "learner" ? "border border-black" : "border border-gray"
+                  userType === "learner"
+                    ? "border border-black"
+                    : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("learner");
@@ -116,7 +117,9 @@ export default function Login() {
               </Button>
               <Button
                 className={`w-1/3 rounded-none ${
-                  userType === "reviewer" ? "border border-black" : "border border-gray"
+                  userType === "reviewer"
+                    ? "border border-black"
+                    : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("reviewer");
@@ -126,7 +129,9 @@ export default function Login() {
               </Button>
               <Button
                 className={`w-1/3 rounded-l-none ${
-                  userType === "educator" ? "border border-black" : "border border-gray"
+                  userType === "educator"
+                    ? "border border-black"
+                    : "border border-gray"
                 }`}
                 onClick={() => {
                   setUT("educator");
@@ -135,7 +140,7 @@ export default function Login() {
                 Teacher
               </Button>
             </div>
-            <form onSubmit={handleLogIn} className="text-white space-y-6">
+            <form onSubmit={handleLogIn} className="text-black space-y-6">
               <div>
                 <Input
                   placeholder="User Name"
@@ -159,10 +164,11 @@ export default function Login() {
                 Forgot password?
               </Link>
 
-              <Button className="w-full bg-teal-600 text-white text-lg" disabled={loading}>
-                {loading
-                  ? "Verifying your credentials..."
-                  : "Login"}
+              <Button
+                className="w-full bg-teal-600 text-black text-lg"
+                disabled={loading}
+              >
+                {loading ? "Verifying your credentials..." : "Login"}
               </Button>
             </form>
             <div className="text-center">

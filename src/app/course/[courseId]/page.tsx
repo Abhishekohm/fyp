@@ -199,6 +199,23 @@ export default function Course({ params }) {
                 url={selectedCurriculum?.content}
                 controls={true}
                 pip={true}
+              />
+            ) : (
+              !loading && (
+                <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
+                  <div
+                    style={{
+                      height: "500px",
+                      border: "1px solid rgba(0, 0, 0, 0.3)",
+                    }}
+                  >
+                    <Viewer
+                      fileUrl={selectedCurriculum.content}
+                      plugins={[defaultLayoutPluginInstance]}
+                      theme="dark"
+                    />
+                  </div>
+                </Worker>
               />)
               :
               // <>exe</> 
