@@ -141,7 +141,7 @@ export default function Signup() {
       <div className="h-screen">
         <header className="flex items-center justify-between h-auto px-4 bg-black shadow-md">
           <div className="text-3xl font-bold text-white">OpenAcademy</div>
-          <Button className="px-4 py-2 m-4 bg-purple-600 text-white rounded-md">
+          <Button className="px-4 py-2 m-4 bg-teal-600 text-white rounded-md">
             <Link href="/login">Log In</Link>
           </Button>
         </header>
@@ -201,10 +201,11 @@ export default function Signup() {
 
 
               <Button
-                className="w-full bg-purple-600 text-white text-lg"
+                className="w-full bg-teal-600 text-white text-lg"
                 type="submit"
+                disabled={loading}
               >
-                {loading ? "Hang tight, we're on it..." : "Sign in"}
+                {loading ? "Hang tight, we're on it..." : "Sign Up"}
               </Button>
             </form>
 

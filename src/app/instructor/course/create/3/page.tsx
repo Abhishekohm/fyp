@@ -12,7 +12,7 @@ import { toast, Bounce } from "react-toastify";
 
 export default function Component() {
   const router = useRouter();
-  const [desc, setDesc] = useState("none");
+  const [desc, setDesc] = useState(localStorage.getItem("desc") || "");
   const { auth } = useAuthContext();
   const [loading, setLoading] = useState(false);
 
@@ -25,7 +25,7 @@ export default function Component() {
     setLoading(true);
     let title: any = localStorage.getItem("title");
     let cat: any = localStorage.getItem("category");
-    title = title?.toLowerCase();
+    // title = title?.toLowerCase();
     cat = cat?.toLowerCase();
     const token = auth.accessToken;
     console.log(token);
@@ -49,6 +49,7 @@ export default function Component() {
       if (response.ok) {
         console.log("Course created successfully!");
         localStorage.removeItem("title");
+        localStorage.removeItem("desc");
         localStorage.removeItem("category");
         const res = await response.json();
         toast.success(`Course created sucessfully. Redirecting...`, {
@@ -65,11 +66,12 @@ export default function Component() {
         setTimeout(() => {
           setLoading(false);
           router.push(`/instructor/courses/${res.data.id}/manage/goals`);
-        },2000)
-      } else {
+        }, 2000)
+      }
+      else {
         let msg = await response.json();
         console.log("Failed to create course!!:", msg);
-        toast.error(`${msg?.message}.`, {
+        toast.error(`${msg?.message} ${msg.error!==null && msg.error.description}`, {
           position: "bottom-right",
           autoClose: 4000,
           hideProgressBar: false,
@@ -82,11 +84,28 @@ export default function Component() {
         });
         setLoading(false);
       }
-    } catch (error) {
-      setLoading(false);
+    } 
+    catch (error) 
+    {
+        toast.error(error, {
+        position: "bottom-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Bounce,
+      });
       console.log("Error during create course:", error);
+      setLoading(false);
     }
   };
+
+  function previousPage(): void {
+    localStorage.setItem("desc", desc);
+  }
 
   return (
     <>
@@ -100,17 +119,19 @@ export default function Component() {
             </h1>
             <p className="text-lg text-center text-black">Keep it simple.</p>
             <Textarea
+            value={desc}
               onChange={inputDesc}
               className="min-h-[250px] w-full bg-black text-white"
               placeholder="Description"
             />
             <div className="flex w-full justify-between text-black">
-              <Button variant="outline">
+              <Button onClick={previousPage} variant="outline">
                 <Link href="/instructor/course/create/2">Previous</Link>
               </Button>
               <Button
                 className="text-white bg-purple-600"
                 onClick={createCourse}
+                disabled={loading}
               >
                 {loading ? "Creating course..." : "Create course"}
               </Button>

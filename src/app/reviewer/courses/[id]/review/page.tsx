@@ -21,9 +21,11 @@ import {
   QA,
   CurriculumLoader,
   VideoLoader,
-} from "./components";
+} from "../../../../course/[courseId]/components";
+import Action from "../../components/action";
 
 export default function Course({ params }) {
+
   const { toast } = useToast();
 
   const [tab, setTab] = useState("Announcements");
@@ -88,7 +90,7 @@ export default function Course({ params }) {
     try {
       const token = getAccessToken();
       const response = await fetch(
-        `https://fypbackend-production-d00d.up.railway.app/api/course/${params.courseId}/${endpoint}`,
+        `https://fypbackend-production-d00d.up.railway.app/api/course/${params.id}/${endpoint}`,
         {
           method: "GET",
         }
@@ -201,11 +203,10 @@ export default function Course({ params }) {
                 pip={true}
               />)
               :
-              // <>exe</> 
               (!loading && <Worker workerUrl="https://unpkg.com/pdfjs-dist@3.4.120/build/pdf.worker.js">
                 <div style={{ height: '500px', border: '1px solid rgba(0, 0, 0, 0.3)', }}>
                   <Viewer
-                    fileUrl={selectedCurriculum?.content}
+                    fileUrl={selectedCurriculum?.content || ""}
                     plugins={[defaultLayoutPluginInstance]}
                     theme="dark"
                   />
@@ -260,16 +261,10 @@ export default function Course({ params }) {
                   Learning Tools
                 </Button>
               </div>
-            </Tabs>
-          </div> 
+            </Tabs> */}
+          </div>
           <div>
-            {tab === "Overview" && <Overview />}
-            {tab === "Q&A" && <QA />}
-            {tab === "Notes" && <Notes />}
-            {tab === "Announcements" && <Announcements />}
-            {tab === "Reviews" && <Reviews />}
-            {tab === "Learning" && <Learning />}
-          </div> */}
+            <Action course={curriculum?.course}/>
           </div>
         </main>
       </div>

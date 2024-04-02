@@ -21,10 +21,41 @@ body {
   background: linear-gradient(to bottom,
       transparent,
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* * {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent; scrollbar-color: thumbColor trackColor
+} */
+
+/* Increase specificity for scrollbar styles */
+.nav-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+.nav-container::-webkit-scrollbar-track {
+  background: #ffffff;
+  padding: 2px;
+}
+
+.nav-container::-webkit-scrollbar-thumb {
+  background: #ffffff;
+  border-radius: 4px;
+}
+
+.nav-container::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
+/* Show scrollbar track and handle when hovering */
+/* .nav-container:hover::-webkit-scrollbar-track, */
+.nav-container:hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.3);
 }
